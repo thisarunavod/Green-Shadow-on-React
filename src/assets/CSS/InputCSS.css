@@ -1,0 +1,4 @@
+.basic-input-styles {
+    @apply
+    border border-gray-400 py-1 px-2 rounded h-[40px]  focus:ring-green-800
+}
