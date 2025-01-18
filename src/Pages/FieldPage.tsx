@@ -23,9 +23,7 @@ export function FieldPage() {
         if (process === "UPDATE_FIELD") {
             setIsAddField(false);
         }
-
         setIsModalOpen(!isModalOpen);
-
     };
     const fields:Field[] = useSelector((state:any) => state.fieldManager);
     const dispatch = useDispatch();

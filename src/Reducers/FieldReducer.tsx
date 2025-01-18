@@ -8,7 +8,10 @@ const fieldSlice = createSlice({
     initialState,
     reducers:{
         addField(state,action){
-            state.push(action.payload)
+            const index = state.findIndex(field=>field.fieldCode === action.payload.fieldCode)
+            if (index < 0) {
+                state.push(action.payload)
+            }
         },
         updateField(state,action){
             const index = state.findIndex(field=>field.fieldCode === action.payload.fieldCode)
