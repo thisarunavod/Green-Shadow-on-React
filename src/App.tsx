@@ -9,7 +9,11 @@ import {StaffPage} from "./Pages/StaffPage.tsx";
 import {VehiclePage} from "./Pages/VehiclePage.tsx";
 import {CreateLOGPage} from "./Pages/CreateLOGPage.tsx";
 import {EquipmentPage} from "./Pages/EquipmentPage.tsx";
-
+import {TaskApp} from "./TestingComponents/TaskApp.tsx";
+import {TaskAppReducer} from "./TestingComponents/TaskAppReducer.tsx"
+import {CountNumberWithReducer} from "./TestingComponents/CountNumberWithReducer.tsx";
+import {NormalButtonComponent, NormalCount} from "./TestingComponents/NormalCount.tsx";
+import {ResponsiveForm} from "./TestingComponents/ResponsiveForm.tsx";
 
 function App() {
     const routes = createBrowserRouter([
@@ -32,6 +36,11 @@ function App() {
     return (
         <>
             <RouterProvider router={routes}></RouterProvider>
+            {/*<TaskApp></TaskApp>*/}
+            {/*<TaskAppReducer></TaskAppReducer>*/}
+            {/*<CountNumberWithReducer></CountNumberWithReducer>*/}
+            {/*<NormalCount></NormalCount>*/}
+            {/*<ResponsiveForm></ResponsiveForm>*/}
         </>
     )
 }

@@ -1,14 +1,40 @@
 
 import '../assets/CSS/InputCSS.css'
-import {useState} from "react";
+import {useReducer, useState} from "react";
+import {Field} from "../Model/Field.ts";
+import {addField, FieldReducer, initialState} from "../Reducers/FieldReducer.tsx";
+import {useDispatch, useSelector} from "react-redux";
 
 export function FieldPage() {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const[fieldCode,setfieldCode] = useState('');
+    const[fieldName,setfieldName] = useState('');
+    const[fieldLocation,setfieldLocation] = useState('');
+    const[fieldSize,setfieldSize] = useState(0);
+    const[fieldImage1,setfieldImage1] = useState('');
+    const[fieldImage2,setfieldImage2] = useState('');
 
     // Function to open the modal
     const openModal = () => {
         setIsModalOpen(!isModalOpen);
     };
+    const fields:Field[] = useSelector((state:any) => state.fieldManager);
+    const dispatch = useDispatch();
+
+    function handleAddFieldButton(e){
+        e.stopPropagation();
+        openModal();
+        const newField = new Field(
+            fieldCode,
+            fieldName,
+            fieldLocation,
+            fieldSize,
+            fieldImage1,
+            fieldImage2
+        ).toPlainObject()
+        dispatch(addField(newField))
+        console.log(fields)
+    }
 
     return (
 
@@ -20,7 +46,18 @@ export function FieldPage() {
                 </button>
             </div>
             <div className='bg-white w-[900px] h-[500px] rounded-[6px] shadow-amber-700'>
+                <ul>
+                    {fields?.length > 0 && (
+                        <ul>
+                            {fields.map((field, index) => (
+                                <li key={index}>
+                                    {field.fieldCode} - {field.fieldName} - {field.fieldSize} - {field.fieldLocation}
+                                </li>
+                            ))}
+                        </ul>
+                    )}
 
+                </ul>
             </div>
 
             {/* Modal */}
@@ -37,23 +74,23 @@ export function FieldPage() {
                             <form action="#">
                                 <div className='grid grid-cols-2 gap-5'>
 
-                                    <input type="text" placeholder='Field Code' className='basic-input-styles'/>
-                                    <input type="text" placeholder='Field Name' className='basic-input-styles'/>
+                                    <input type="text" placeholder='Field Code' className='basic-input-styles' onChange={(e)=>setfieldCode(e.target.value)}/>
+                                    <input type="text" placeholder='Field Name' className='basic-input-styles' onChange={(e)=>setfieldName(e.target.value)}/>
                                 </div>
                                 <div className='mt-5 grid grid-cols-2 gap-5'>
                                     <input type="text" placeholder='Field Location'
-                                           className='basic-input-styles'/>
+                                           className='basic-input-styles' onChange={(e)=>setfieldLocation(e.target.value)}/>
                                     <input type="number" placeholder='Field size'
-                                           className='basic-input-styles'/>
+                                           className='basic-input-styles' onChange={(e)=>setfieldSize(e.target.value)}/>
                                 </div>
                                 <div className='mt-5 grid grid-cols-2 gap-5' >
                                     <input type="file" placeholder='Select field image1'
-                                           className='basic-input-styles'/>
+                                           className='basic-input-styles' onChange={(e)=>setfieldImage1(String(e.target.value))}/>
                                     <input type="file" placeholder='Select field image2'
-                                           className='basic-input-styles'/>
+                                           className='basic-input-styles' onChange={(e)=>setfieldImage2(String(e.target.value))}/>
                                 </div>
                                 <div className='mt-5'>
-                                    <button className='w-full h-[40px] bg-green-500 text-1xl text-white rounded hover:bg-green-600'>Add Field</button>
+                                    <button className='w-full h-[40px] bg-green-500 text-1xl text-white rounded hover:bg-green-600' onClick={(e)=>handleAddFieldButton(e)}>Add Field</button>
                                 </div>
                             </form>
                         </div>
