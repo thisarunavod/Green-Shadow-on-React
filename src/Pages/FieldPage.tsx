@@ -48,15 +48,20 @@ export function FieldPage() {
             <div className='bg-white w-[900px] h-[500px] rounded-[6px] shadow-amber-700'>
                 <ul>
                     {fields?.length > 0 && (
-                        <ul>
+                        <ul className=' p-4 flex flex-row gap-[10px]'>
                             {fields.map((field, index) => (
-                                <li key={index}>
-                                    {field.fieldCode} - {field.fieldName} - {field.fieldSize} - {field.fieldLocation}
-                                </li>
+                                <div className=' p-4 flex flex-col bg-slate-200 rounded w-[250px] h-[250px] cursor-pointer'>
+                                    <li key={index}> {field.fieldCode}</li>
+                                    <li key={index}> {field.fieldName}</li>
+                                    <li key={index}> {field.fieldSize}</li>
+                                    <li key={index}>{field.fieldLocation}</li>
+                                    <li key={index}>{field.fieldImage1}</li>
+                                    <li key={index}>{field.fieldImage2}</li>
+
+                                </div>
                             ))}
                         </ul>
                     )}
-
                 </ul>
             </div>
 
