@@ -2,7 +2,7 @@
 import '../assets/CSS/InputCSS.css'
 import {useReducer, useState} from "react";
 import {Field} from "../Model/Field.ts";
-import {addField, deleteField, FieldReducer, getField, initialState, updateField} from "../Reducers/FieldReducer.tsx";
+import {addField, deleteField, updateField} from "../Reducers/FieldReducer.tsx";
 import {useDispatch, useSelector} from "react-redux";
 
 export function FieldPage() {
