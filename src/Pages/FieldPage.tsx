@@ -46,6 +46,7 @@ export function FieldPage() {
     }
     function handleUpdateFieldButton(e){
         e.stopPropagation();
+        openModal("")
         const updatedField = new Field(
             fieldCode,
             fieldName,
@@ -55,6 +56,7 @@ export function FieldPage() {
             fieldImage2
         ).toPlainObject()
         dispatch(updateField(updatedField));
+        resetForm()
     }
     function handleDeleteFieldButton(fieldCode:string){
         dispatch(deleteField(fieldCode));

@@ -26,7 +26,8 @@ export function SideMenuBar() {
                             <div className={`custom-link-div ${menuColorList[0]} ${fontStyleList[0]}`}>
                                 <span className='w-[70px] text-4xl'>📊</span><p>DASHBOARD</p>
                             </div>
-                        </Link></li>
+                        </Link>
+                    </li>
                     <li className={`custom-link`} onClick={() => handleLinkClick(1)}>
                     <Link to={'/Field'}>
                             <div className={`custom-link-div ${menuColorList[1]} ${fontStyleList[1]}`}>
