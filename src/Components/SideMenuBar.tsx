@@ -28,8 +28,17 @@ export function SideMenuBar() {
                             </div>
                         </Link>
                     </li>
+                    <li className={`custom-link ${menuColorList[6]}`}
+                        onClick={() => handleLinkClick(6)}>
+                        <Link to={'/Crop'}>
+                            <div className={`custom-link-div ${menuColorList[6]} ${fontStyleList[6]}`}>
+                                <span className='w-[70px] text-4xl'>🌾</span>
+                                <p>CROPS</p>
+                            </div>
+                        </Link>
+                    </li>
                     <li className={`custom-link`} onClick={() => handleLinkClick(1)}>
-                    <Link to={'/Field'}>
+                        <Link to={'/Field'}>
                             <div className={`custom-link-div ${menuColorList[1]} ${fontStyleList[1]}`}>
                                 <span className='w-[70px] text-4xl'>🌱</span><p>FIELDS</p>
                             </div>

@@ -15,6 +15,7 @@ import {CountNumberWithReducer} from "./TestingComponents/CountNumberWithReducer
 import {NormalButtonComponent, NormalCount} from "./TestingComponents/NormalCount.tsx";
 import {ResponsiveForm} from "./TestingComponents/ResponsiveForm.tsx";
 import {DataLoadToInput} from "./TestingComponents/DataLoadToInput.tsx";
+import {CropPage} from "./Pages/CropPage.tsx";
 
 function App() {
     const routes = createBrowserRouter([
@@ -29,6 +30,7 @@ function App() {
                 {path : "/Vehicle" ,element:<VehiclePage/>},
                 {path : "/Equipment" ,element:<EquipmentPage/>},
                 {path : "/CreateLog" ,element:<CreateLOGPage/>},
+                {path : "/Crop" ,element:<CropPage/>},
             ]
         },
 
