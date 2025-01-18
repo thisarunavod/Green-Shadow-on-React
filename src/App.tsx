@@ -14,6 +14,7 @@ import {TaskAppReducer} from "./TestingComponents/TaskAppReducer.tsx"
 import {CountNumberWithReducer} from "./TestingComponents/CountNumberWithReducer.tsx";
 import {NormalButtonComponent, NormalCount} from "./TestingComponents/NormalCount.tsx";
 import {ResponsiveForm} from "./TestingComponents/ResponsiveForm.tsx";
+import {DataLoadToInput} from "./TestingComponents/DataLoadToInput.tsx";
 
 function App() {
     const routes = createBrowserRouter([
@@ -41,6 +42,7 @@ function App() {
             {/*<CountNumberWithReducer></CountNumberWithReducer>*/}
             {/*<NormalCount></NormalCount>*/}
             {/*<ResponsiveForm></ResponsiveForm>*/}
+            {/*<DataLoadToInput></DataLoadToInput>*/}
         </>
     )
 }

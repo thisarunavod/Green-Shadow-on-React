@@ -9,16 +9,19 @@ const fieldSlice = createSlice({
     reducers:{
         addField(state,action){
             state.push(action.payload)
-            console.log(state.length)
         },
         updateField(state,action){
-
+            const index = state.findIndex(field=>field.fieldCode === action.payload.fieldCode)
+            if (index > -1){
+                state[index] = action.payload
+            }
         },
         getField(state,action){
 
         },
         deleteField(state,action){
-
+            console.log(action.payload)
+            return state.filter(field=>field.fieldCode !== action.payload)
         },
 
     }
@@ -26,11 +29,3 @@ const fieldSlice = createSlice({
 export const {addField,updateField,getField,deleteField} = fieldSlice.actions;
 export default fieldSlice.reducer;
 
-// export function FieldReducer(state , action) {
-//     switch(action.type){
-//         case "ADD_FIELD":
-//             return [
-//                 ...state,action.payload
-//             ]
-//     }
-// }
