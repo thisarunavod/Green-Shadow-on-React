@@ -4,16 +4,16 @@ export class Staff {
     lastName: string;
     designation: string;
     gender: string;
-    joinDate: Date;
-    dob:Date;
+    joinDate: string;
+    dob:string;
     address: string;
     contactNumber: string;
     email: string;
     role: string;
-    fieldCodes:string[];
-    vehicleList:string[];
+    fieldCode:string;
+    vehicleCode:string;
 
-    constructor(staffId:string,firstName:string,lastName:string,designation:string,gender:string,joinDate:Date,dob:Date,address:string,contactNumber:string,email:string,role:string,fieldCodes:string[],vehicleList:string[]) {
+    constructor(staffId:string,firstName:string,lastName:string,designation:string,gender:string,joinDate:string,dob:string,address:string,contactNumber:string,email:string,role:string,fieldCode:string,vehicleCode:string) {
         this.staffId = staffId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -25,8 +25,8 @@ export class Staff {
         this.contactNumber = contactNumber;
         this.email = email;
         this.role = role;
-        this.fieldCodes = fieldCodes;
-        this.vehicleList = vehicleList;
+        this.fieldCode = fieldCode;
+        this.vehicleCode = vehicleCode;
     }
 
     toPlainObject() {

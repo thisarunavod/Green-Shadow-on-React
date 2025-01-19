@@ -7,7 +7,13 @@ const staffSlice = createSlice({
     name:'staffManager',
     initialState,
     reducers:{
-        addStaff(state,action){},
+        addStaff(state,action){
+            const index = state.findIndex(staff=>staff.staffId === action.payload.staffId)
+            if (index < 0) {
+                state.push(action.payload)
+            }
+            console.log(state)
+        },
         updateStaff(state,action){},
         getStaff(state,action){},
         deleteStaff(state,action){},
