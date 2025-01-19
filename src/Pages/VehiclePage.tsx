@@ -88,8 +88,10 @@ export function VehiclePage() {
             <div className="VehiclePage w-[950px] h-[600px] bg-sky-200 flex flex-col gap-[10px] justify-center items-center shadow-lg">
                 {/* Add Data Button */}
                 <div className=' w-[900px] '>
-                    <button onClick={() => openModal("ADD_VEHICLE")
-                    } className="bg-lime-500 text-white px-4 py-2 rounded hover:bg-lime-400">
+                    <button onClick={() => {
+                        openModal("ADD_VEHICLE")
+                        resetForm()
+                    }} className="bg-lime-500 text-white px-4 py-2 rounded hover:bg-lime-400">
                         Add to Vehicle
                     </button>
                 </div>
@@ -126,7 +128,7 @@ export function VehiclePage() {
                                         <td className="border border-gray-300 px-4">{vehicle.remarks}</td>
                                         <td className="border border-gray-300 px-4 text-center">
                                             <div className='flex flex-row w-[90px] gap-[10px]'>
-                                                <button onClick={()=>handleUpdateVehicleButton(vehicle)}
+                                                <button onClick={()=>handleUpdateVehicleOpenForm(vehicle)}
                                                         className=" w-[50px] bg-blue-500 text-white  py-2 rounded hover:bg-blue-600 transition">
                                                     Edit
                                                 </button>
@@ -211,13 +213,13 @@ export function VehiclePage() {
                                         {isAddVehicle && (
                                             <button
                                                 className='w-full h-[40px] bg-green-500 text-1xl text-white rounded hover:bg-green-600'
-                                                onClick={(e) => handleAddVehicleButton(e)}>Add Crop
+                                                onClick={(e) => handleAddVehicleButton(e)}>Add Vehicle
                                             </button>
                                         )}
                                         {!isAddVehicle && (
                                             <button
                                                 className='w-full h-[40px] bg-green-500 text-1xl text-white rounded hover:bg-green-600'
-                                                onClick={(e) => handleUpdateVehicleButton(e)}>Update Crop
+                                                onClick={(e) => handleUpdateVehicleButton(e)}>Update Vehicle
                                             </button>
                                         )}
                                     </div>
