@@ -8,10 +8,12 @@ const cropSlice = createSlice({
     initialState,
     reducers:{
         addCrop(state,action){
-            const index = state.findIndex(field=>field.fieldCode === action.payload.fieldCode)
+
+            const index = state.findIndex(crop=>crop.cropCode === action.payload.cropCode)
             if (index < 0) {
                 state.push(action.payload)
             }
+            console.log(state)
         },
         updateCrop(state,action){
             const index = state.findIndex(field=>field.fieldCode === action.payload.fieldCode)
@@ -24,7 +26,7 @@ const cropSlice = createSlice({
         },
         deleteCrop(state,action){
             console.log(action.payload)
-            return state.filter(field=>field.fieldCode !== action.payload)
+            return state.filter(crop=> crop.cropCode !== action.payload)
         },
 
     }

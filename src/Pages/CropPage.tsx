@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import {Crop} from "../Model/Crop.ts";
-import {addCrop} from "../Reducers/CropReducer.ts";
+import {addCrop, deleteCrop} from "../Reducers/CropReducer.ts";
 import {useState} from "react";
 
 export function CropPage() {
@@ -58,9 +58,6 @@ export function CropPage() {
         // dispatch(updateField(updatedField));
         // resetForm()
     }
-    function handleDeleteFieldButton(fieldCode:string){
-        // dispatch(deleteField(fieldCode));
-    }
 
     function handleUpdateFieldOpenForm(crop:Crop) {
         // openModal("UPDATE_FIELD");
@@ -74,6 +71,11 @@ export function CropPage() {
         // setfieldImage1(relevantField.fieldImage1)
         // setfieldImage2(relevantField.fieldImage2)
     }
+
+    function handleDeleteCropButton(cropCode: string) {
+        dispatch(deleteCrop(cropCode));
+    }
+
     return (
         <>
             <div className="HomePage w-[950px] h-[600px] bg-sky-200 flex flex-col gap-[10px] justify-center items-center shadow-lg">
@@ -84,39 +86,65 @@ export function CropPage() {
                         Create Crop
                     </button>
                 </div>
-                <div className="pl-10 cartContent flex bg-white w-[900px] h-[535px] rounded-[6px] shadow-amber-700 overflow-y-auto">
-                    {crops?.length > 0 && (
-                        <table>
-                            {/* Table header row */}
-                            <thead>
-                            <tr>
-                                <th>Crop Code</th>
-                                <th>Crop Common Name</th>
-                                <th>Crop Scientific Name</th>
-                                <th>Crop Image</th>
-                                <th>Crop Category</th>
-                                <th>Crop Season</th>
-                                <th>Field Code</th>
-                                <th>Edit</th>
-                            </tr>
-                            </thead>
-                            {/* Table body rows */}
-                            <tbody>
-                            {crops.map((crop, index) => (
-                                <tr key={index}>
-                                    <td>{crop.cropCode}</td>
-                                    <td>{crop.cropCommonName}</td>
-                                    <td>{crop.cropScientificName}</td>
-                                    <td>{crop.cropImage}</td>  {/* Assuming cropImage is a URL or path */}
-                                    <td>{crop.cropCategory}</td>
-                                    <td>{crop.cropSeason}</td>
-                                    <td>{crop.fieldCode}</td>
-                                    <td><button>Edit</button></td>
+                <div className="pl-10 cartContent flex bg-white w-[900px] h-[535px] rounded-[6px] shadow-amber-700 overflow-y-auto  ">
+                    {crops?.length > 0 ? (
+                        <div className="relative mr-[35px] overflow-auto  border border-gray-300 rounded-md">
+                            <table className="table-auto w-full border-collapse border border-gray-200">
+                                {/* Table Header */}
+                                <thead className="bg-gray-100">
+                                <tr className="h-16"> {/* Fixed row height */}
+                                    <th className="border border-gray-300 px-4 text-lime-700 text-left">Crop Code</th>
+                                    <th className="border border-gray-300 px-4 text-lime-700 text-left">Crop Common Name</th>
+                                    <th className="border border-gray-300 px-4 text-lime-700 text-left">Crop Scientific Name</th>
+                                    <th className="border border-gray-300 px-4 text-lime-700 text-left">Crop Image</th>
+                                    <th className="border border-gray-300 px-4 text-lime-700 text-left">Crop Category</th>
+                                    <th className="border border-gray-300 px-4 text-lime-700 text-left">Crop Season</th>
+                                    <th className="border border-gray-300 px-4 text-lime-700 text-left">Field Code</th>
+                                    <th className="border border-gray-300 px-4 text-lime-700 text-left">Edit</th>
                                 </tr>
-                            ))}
-                            </tbody>
-                        </table>
+                                </thead>
+                                {/* Table Body */}
+                                <tbody>
+                                {crops.map((crop) => (
+                                    <tr
+                                        key={crop.cropCode}
+                                        className="h-[90px] even:bg-gray-50 hover:bg-gray-100"
+                                    >
+                                        <td className="border border-gray-300 px-4">{crop.cropCode}</td>
+                                        <td className="border border-gray-300 px-4">{crop.cropCommonName}</td>
+                                        <td className="border border-gray-300 px-4">{crop.cropScientificName}</td>
+                                        <td className="border border-gray-300 px-4 text-center">
+                                            <img
+                                                src={'src/assets/images/images.jpeg'}
+                                                alt={crop.cropCommonName}
+                                                className="w-12 h-12 object-cover mx-auto rounded-md"
+                                            />
+
+                                        </td>
+                                        <td className="border border-gray-300 px-4">{crop.cropCategory}</td>
+                                        <td className="border border-gray-300 px-4">{crop.cropSeason}</td>
+                                        <td className="border border-gray-300 px-4">{crop.fieldCode}</td>
+                                        <td className="border border-gray-300 px-4 text-center">
+                                            <div className='flex flex-row w-[90px] gap-[10px]'>
+                                                <button
+                                                    className=" w-[50px] bg-blue-500 text-white  py-2 rounded hover:bg-blue-600 transition">
+                                                    Edit
+                                                </button>
+                                                <button onClick={()=>handleDeleteCropButton(crop.cropCode)}
+                                                    className=" w-[50px] bg-red-400 text-white  py-2 rounded hover:bg-red-500 transition">
+                                                    Del
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    ) : (
+                        <p className="text-gray-500 text-center">No crops available.</p>
                     )}
+
                 </div>
 
                 {/* Modal */}
