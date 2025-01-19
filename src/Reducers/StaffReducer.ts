@@ -14,9 +14,16 @@ const staffSlice = createSlice({
             }
             console.log(state)
         },
-        updateStaff(state,action){},
+        updateStaff(state,action){
+            const index = state.findIndex(staff=>staff.staffId === action.payload.staffId)
+            if (index > -1){
+                state[index] = action.payload
+            }
+        },
         getStaff(state,action){},
-        deleteStaff(state,action){},
+        deleteStaff(state,action){
+            return state.filter(staff=> staff.staffId !== action.payload)
+        },
     }
 })
 

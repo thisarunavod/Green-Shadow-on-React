@@ -25,7 +25,6 @@ const cropSlice = createSlice({
 
         },
         deleteCrop(state,action){
-            console.log(action.payload)
             return state.filter(crop=> crop.cropCode !== action.payload)
         },
 

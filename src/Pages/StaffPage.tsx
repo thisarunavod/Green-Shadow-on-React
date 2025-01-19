@@ -1,7 +1,7 @@
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {Staff} from "../Model/Staff.ts";
-import {addStaff} from "../Reducers/StaffReducer.ts";
+import {addStaff, deleteStaff, updateStaff} from "../Reducers/StaffReducer.ts";
 import {Field} from "../Model/Field.ts";
 
 export function StaffPage() {
@@ -60,30 +60,34 @@ export function StaffPage() {
     function handleUpdateStaffButton(e){
         e.stopPropagation();
         openModal("")
-        // const updatedField = new Field(
-        //     fieldCode,
-        //     fieldName,
-        //     fieldLocation,
-        //     fieldSize,
-        //     fieldImage1,
-        //     fieldImage2
-        // ).toPlainObject()
-        // dispatch(updateField(updatedField));
-        // resetForm()
+        const updatedMember = new Staff(
+            staffId,
+            firstName,
+            lastName,
+            designation,
+            gender,
+            joinDate,
+            dob,
+            address,
+            contactNumber,
+            email,
+            role,
+            fieldCode,
+            vehicleCode,
+        ).toPlainObject()
+        dispatch(updateStaff(updatedMember));
+        resetForm()
     }
-    function handleDeleteStaffButton(fieldCode:string){
-        // dispatch(deleteField(fieldCode));
+    function handleDeleteStaffButton(staffId:string){
+        dispatch(deleteStaff(staffId)) ;
     }
 
     function handleUpdateStaffOpenForm(member:Staff){
-
         setStaffDataForForm(member)
         openModal("UPDATE_STAFF");
-
     }
 
     function setStaffDataForForm(relevantStaff:Staff){
-        console.log(relevantStaff.email);
         setStaffId(relevantStaff.staffId);
         setFirstName(relevantStaff.firstName);
         setLastName(relevantStaff.lastName);
@@ -99,9 +103,6 @@ export function StaffPage() {
         setVehicle(relevantStaff.vehicleCode);
     }
 
-    function stringToDate(date:string){
-        return new Date(date)
-    }
     return (
         <>
 
